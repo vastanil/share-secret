@@ -1,12 +1,10 @@
-version: "3.8"
-
 services:
   redis:
-    image: redis
+    image: redis:latest
     restart: always
 
   backend:
-    build: ./backend
+    image: share-backend:latest
     environment:
       SECRET_KEY: "99b6a5775317223e98826c64891f4506"
     ports:
@@ -15,9 +13,8 @@ services:
       - redis
 
   frontend:
-    build: ./frontend
+    image: share-frontend:latest
     ports:
       - "3000:3000"
     depends_on:
       - backend
-
